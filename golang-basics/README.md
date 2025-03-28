@@ -9,7 +9,7 @@
 - **Simplicity:** Easy to learn and read (like a beginner-friendly recipe).
 - **Fast Compilation:** Compiles code quickly (like instant noodles).
 - **Garbage Collection:** Automatically frees up unused memory (like a self-cleaning kitchen).
-
+- **Static Typing:** Catches variable types at compile time
 ---
 
 ## 2. How is Go Different from Other Programming Languages?
@@ -20,7 +20,7 @@
 - **No Classes:** Uses structs and interfaces instead of classes (like using building blocks instead of pre-made furniture).
 - **Goroutines:** Lightweight threads for multitasking (like having multiple chefs in a kitchen).
 - **Simplicity:** Less boilerplate code (like writing a short email instead of a long essay).
-
+- **Error Handling:** Encourages explicit error handling rather than try catch exceptions
 ---
 
 ## 3. What is the Default Value (Zero Value) of Variables in Go?
@@ -29,10 +29,10 @@
 
 ### Zero Values:
 ```go
-int: 0
+int,int32,int64,float32,float64: 0
 string: ""  // empty string
 bool: false
-pointer: nil  // no memory address
+pointer, slices,struct,map,channel,function: nil  // no memory address
 ```
 
 ---
@@ -49,6 +49,9 @@ var x int      // Declare x (default value is 0)
 y := 10        // Declare and assign y (type inferred as int)
 ```
 
+### Differences:
+- **Accessibility:** variables declared with 'var' keyword can be declared outside a function and can be used inside a function, basically package level. Variables declared by ':=' can only be declared inside a function and can only be used inside that function
+- **Declaration:** variables declared with 'var' keyword has a n explicit data type like the code example whereas variables declared with ':=' have their type's implicit. Variables with var are not initialized but variables with ':=' are initialized
 ---
 
 ## 5. What are Go's Built-in Types?
@@ -59,7 +62,8 @@ y := 10        // Declare and assign y (type inferred as int)
 - **Numbers:** `int`, `float64`, etc.
 - **Strings:** `string`
 - **Booleans:** `bool`
-- **Collections:** `array`, `slice`, `map`
+- **Aliases:** `rune`(alias for int32, used for Unicode code points), `byte`(alias for unit8)
+- **Collections:** `array`, `slice`, `map`, `struct`, `channel`, `interface`, `function`
 
 ---
 
@@ -71,6 +75,28 @@ y := 10        // Declare and assign y (type inferred as int)
 ```go
 const Pi = 3.14
 const AppName = "GoApp"
+```
+#### Key takeaways:
+- constants are declared using the `const` keyword
+- constants inherit the type of the immediate previous explicitly typed constant
+- maps, make etc. can not be constants
+- in a sequence of constants if one constant is assigned `iota` the entire sequence gets an underlying map example 
+
+```go
+const (
+	k = ""  //the value of k is ""
+	c = iota //1 //though it is the first iota but, 
+	            //it is not the first constant in sequence 
+	            //so value is 1
+	d = 42
+	e = rune('a')
+	f //4
+	g = iota //5
+	_ //skips the value 6
+	h //7
+	i //8
+	j //9
+)
 ```
 
 ---
