@@ -127,7 +127,9 @@ Blue         // 2
 ptr := new(int)       // Allocates memory for an int, returns a pointer
 slice := make([]int, 5)  // Allocates and initializes a slice of length 5
 ```
-
+**Key Differences:**
+- `new` Allocates memory for a variable of a specified type and returns a pointer to it. Works for all types. The memory is zero-initialized.
+- `make` Specifically used for initializing slices, maps, and channels. Initializes and returns a ready-to-use instance (not a pointer).
 ---
 
 ## 9. What is the Difference Between an Array and a Slice in Go?
@@ -141,7 +143,8 @@ slice := make([]int, 5)  // Allocates and initializes a slice of length 5
 array := [3]int{1, 2, 3}  // Fixed size
 slice := []int{1, 2, 3}   // Dynamic size
 ```
-
+**Key Difference:**
+- `slice` points to an underlying array while `array` is copied when passed to functions.
 ---
 
 ## 10. How Do You Create and Initialize a Slice in Go?
@@ -154,6 +157,13 @@ slice := []int{1, 2, 3}   // Dynamic size
 fruits := []string{"apple", "banana", "cherry"}
 // Add an item
 fruits = append(fruits, "orange")
+
+//using make
+vegitables := make([]int, 5)
+
+//From slicing an existing array
+arr := [5]int{1, 2, 3, 4, 5}
+slice := arr[1:4]
 ```
 
 ---
